@@ -1,0 +1,201 @@
+@font-face {
+    font-family: munro;
+    font-weight: bold;
+    src: url(../fonts/Munro.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    color: white;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    cursor: crosshair;
+    top: 0;
+}
+
+#playbox {
+    border: 1vh solid white;
+    box-sizing: content-box;
+    height: 90vh;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    overflow: hidden;
+    position: relative;
+    width: 90vw;
+}
+
+#bar {
+    background-color: white;
+    bottom: 1%;
+    height: 2%;
+    left: 40%;
+    position: absolute;
+    width: 20%;
+    z-index: 1;
+}
+
+.loading #bar,
+.menu #bar {
+    display: none;
+}
+
+.nut {
+    background-color: lawngreen;
+    height: 7%;
+    position: absolute;
+    top: - 7%;
+    transition: background-color 1000ms linear;
+    width: 2.5%;
+    z-index: 3;
+}
+
+h1 {
+    color: white;
+    font-family: munro;
+    font-size: 140%;
+    margin-top: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+h2 {
+    color: red;
+    text-align: center;
+}
+
+h2 span {
+    background-color: white;
+    padding: 0 1%;
+}
+
+pre {
+    bottom: 0;
+    color: black;
+    font-family: monospace;
+    font-size: 20px;
+    position: absolute;
+    right: 15%;
+}
+
+.gameOver {
+    background-color: red;
+}
+
+.gameOver #elephant {
+    color: white;
+}
+
+.gameOver .nut {
+    z-index: 0;
+}
+
+.playing {
+    cursor: none;
+}
+
+.menu #menu {
+    display: block;
+}
+
+#menu li {
+    list-style: none;
+    padding-left: 2%
+}
+
+#menu li:hover {
+    background-color: white;
+    color: red;
+}
+
+#message {
+    font-family: munro;
+    font-size: 120%;
+    margin: 0 6%;
+    width: 88%;
+    z-index: 2;
+}
+
+.loading #message,
+.menu #message {
+    display: none;
+}
+
+p {}
+
+#score {
+    font-family: munro;
+    font-size: 4vw;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 20vh;
+    width: 5vw;
+}
+
+#loadingScreen {
+    display: none;
+    font-family: munro;
+    font-size: 14vh;
+    position: absolute;
+    text-align: center;
+    top: 35vh;
+    width: 100%;
+}
+
+.loading #loadingScreen {
+    display: block;
+}
+
+#menu {
+    background-color: red;
+    border: 1vh solid white;
+    width: 40%;
+    /*height: 80%;*/
+    top: 10%;
+    left: 30%;
+    position: absolute;
+    display: none;
+    font-family: munro;
+    font-size: 2vw;
+}
+
+#menu p{
+padding: 0 5%;
+}
+
+
+/* MOBILE FRIENDYNESS */
+
+@media (max-width: 1000px) {
+    #menu {
+        width: 80%;
+        left: 10%;
+        font-size: 170%
+    }
+    /*#menu li{
+        margin-bottom: 3%;
+    }*/
+    #message {
+        font-size: 150%;
+    }
+}
+
+@media (max-width: 1000px) and (orientation: portrait) {
+    #menu {
+    font-size: 200%
+    }
+    
+    #menu li{
+        margin-bottom: 3%;
+    }
+}
