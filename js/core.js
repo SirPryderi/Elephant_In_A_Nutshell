@@ -1,21 +1,22 @@
 // GLOBAL VARS //
 
+// So powa! Lower = quicker.
+var clockSpeed = 0;
+//Spawn Nuts per second (nps)
+var nutsPerSecond = 1;
 
-var clockSpeed = 0; // So powa! Lower = quicker.
+var max_speed = 0.40;
+var min_speed = 0.35;
 
 var score = 0;
 
-var nutsPerSecond = 1; //Spawn Nuts per second (nps)
-//var difficultyCurve = score * 500;
-
-var max_speed = 0.40
-var min_speed = 0.35;
+// Elements
+var playbox = $("#playbox");
 
 // EVENTS //
 
 function bindEvents() { //These will be bound once the game has started.
-    $("#playbox").mousemove(function(e) {
-        var playbox = $("#playbox");
+    playbox.mousemove(function(e) {
         var width = playbox.innerWidth();
         var offset = playbox.offset().left;
         var borderWidth = parseInt(playbox.css("border-top-width"));
@@ -26,8 +27,7 @@ function bindEvents() { //These will be bound once the game has started.
     }); //.mouseover(); // call the handler immediately
 
 
-    $('#playbox').bind('touchmove touchstart', function(e) {
-        var playbox = $("#playbox");
+    playbox.bind('touchmove touchstart', function(e) {
         var width = playbox.innerWidth();
         var offset = playbox.offset().left;
         var borderWidth = parseInt(playbox.css("border-top-width"));
@@ -39,7 +39,7 @@ function bindEvents() { //These will be bound once the game has started.
 }
 
 //Nutpositioner JUST FOR DEVELOPING PURPOSE
-$('#playbox .nut').each(function() {
+playbox.find('.nut').each(function() {
     //var pos = $.parseJSON($(this).attr('data-pos'));
     var pos = $(this).attr('data-pos');
     pos = $.parseJSON(pos);
@@ -52,8 +52,6 @@ $('#playbox .nut').each(function() {
 
 $.fn.setPPosition = function(x, y) {
     var playbox = $("#playbox");
-    var width = playbox.innerWidth();
-    var height = playbox.innerHeight();
 
     $(this).css({
         left: x + "%",
@@ -61,7 +59,7 @@ $.fn.setPPosition = function(x, y) {
     });
 
     return this;
-}
+};
 
 $.fn.StartCollisionChecker = function() {
     var myself = $(this);
@@ -73,7 +71,7 @@ $.fn.StartCollisionChecker = function() {
     $(this).attr('colHandler', collisionIntervalHandler);
 
     return this;
-}
+};
 
 $.fn.StopCollisionChecker = function() {
     var collisionIntervalHandler = $(this).attr('colHandler');
@@ -82,7 +80,7 @@ $.fn.StopCollisionChecker = function() {
 
     //console.log('Physical engine shut down for the current element. Goodbye.');
     return this;
-}
+};
 
 $.fn.fallDown = function() {
 
@@ -99,7 +97,7 @@ $.fn.fallDown = function() {
         groundCollision()
     });
 
-}
+};
 
 $.fn.collisionChecker = function() {
     var bar = $("#bar");
@@ -136,11 +134,10 @@ $.fn.collisionChecker = function() {
 
         $('#score').text(score);
     }
-}
+};
+
 
 // FUNCTIONS //
-
-
 function groundCollision() {
     game_over();
 }
@@ -213,7 +210,7 @@ function game_over() {
 
     $('#message').html(gameOverMsg);
 
-    $('#playbox .nut').each(function() {
+    playbox.find('.nut').each(function() {
         $(this).stop();
         clearTimeout(spawnerHandle);
     });
@@ -224,7 +221,7 @@ function game_over() {
 }
 
 function restart_game(){
-    $("#playbox .nut").each(function() {
+    playbox.find(".nut").each(function() {
         $(this).remove();
     });
     
@@ -255,7 +252,7 @@ function spawner() {
 
 function load_menu() {
     $('#menu').load('pages/menu.html', function() {
-        $('#playbox').removeClass('loading').addClass('menu');
+        playbox.removeClass('loading').addClass('menu');
     });
 
 }
@@ -263,7 +260,7 @@ function load_menu() {
 function start_game() {
 
     /* INITS */
-    $('#playbox').removeClass('menu').addClass('playing');
+    playbox.removeClass('menu').addClass('playing');
 
     bindEvents();
     
